@@ -2,10 +2,6 @@ pipeline {
 
     agent any
 
-    tools {
-        docker 'docker-latest' 
-    }
-
     stages {
         stage('Build') {
             steps {
