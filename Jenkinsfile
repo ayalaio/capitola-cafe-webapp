@@ -14,7 +14,7 @@ pipeline {
 
                   withDockerServer([credentialsId: "jenkins", uri: "tcp://svc-docker-socket:2376"]) { 
 
-                    sh "maven clean package"
+                    sh "mvn clean package"
 
                     base = docker.build("docker-dev/helloworld-app") 
                     base.push("helloworld-app") 
