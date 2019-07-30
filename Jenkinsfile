@@ -34,7 +34,12 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+              script{
+                kubernetesDeploy(
+                  kubeconfigId: 'jenkins-kube',
+                  configs: 'deploy-dev.yaml'
+                )
+              }
             }
         }
     }
