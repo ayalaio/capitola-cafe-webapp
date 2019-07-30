@@ -20,7 +20,7 @@ pipeline {
 
                       base = docker.build("docker-dev/helloworld-app") 
                       base.push("helloworld-app") 
-                    //}
+                    }
                   } 
                 }
               }
