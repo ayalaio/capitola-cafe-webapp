@@ -9,7 +9,7 @@ pipeline {
                 //def dockerTool = tool name: 'docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
                 docker.withTool("docker") { 
 
-                  withDockerServer([credentialsId: "jenkins", uri: "tcp://svc-nexus.devops:8081"]) { 
+                  withDockerServer([credentialsId: "jenkins", uri: "tcp://svc-nexus.devops:8081/repository/docker-dev/"]) { 
 
                     sh "printenv" 
                     sh "docker images" 
