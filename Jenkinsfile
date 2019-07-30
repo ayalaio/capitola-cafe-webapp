@@ -10,6 +10,7 @@ pipeline {
         stage('Build') {
             steps {
               script {
+                def timeStamp = Calendar.getInstance().getTime().format('YYYYMMddhhmmss',TimeZone.getTimeZone('CST'))
                 docker.withTool("docker") { 
 
                   docker.withServer("tcp://svc-docker-socket:2376") { 
@@ -19,7 +20,7 @@ pipeline {
                       sh "mvn clean package"
 
                       base = docker.build("devops/helloworld-app") 
-                      base.push("latest") 
+                      base.push(timeStamp) 
                     }
                   } 
                 }
@@ -35,6 +36,7 @@ pipeline {
         stage('Deploy') {
             steps {
               script{
+                sh "sed 's/VERSION/${timeStamp}/g' deploy-dev.yaml.tmpl > deploy-dev.yaml"
                 kubernetesDeploy(
                   kubeconfigId: 'jenkins-kube',
                   configs: 'deploy-dev.yaml'
