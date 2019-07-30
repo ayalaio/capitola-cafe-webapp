@@ -6,9 +6,9 @@ pipeline {
         maven 'maven 3.6.1'
     }
 
-    script {
-      def timeStamp = Calendar.getInstance().getTime().format('YYYYMMddhhmmss',TimeZone.getTimeZone('CST'))
-    }
+
+    def timeStamp = Calendar.getInstance().getTime().format('YYYYMMddhhmmss',TimeZone.getTimeZone('CST'))
+
 
     stages {
         stage('Build') {
