@@ -10,8 +10,7 @@ pipeline {
 
                   withDockerServer([credentialsId: "jenkins", uri: "tcp://svc-docker-socket:2376"]) { 
 
-                    sh "printenv" 
-                    sh "docker images" 
+                    sh "mvn clean build"
                     base = docker.build("docker-dev/helloworld-app") 
                     base.push("helloworld-app") 
                   } 
