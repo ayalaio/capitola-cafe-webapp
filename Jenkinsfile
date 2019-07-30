@@ -9,9 +9,16 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'docker build -t helloworld-app'
-                sh 'docker tag docker-dev/helloworld-app:latest'
-                sh 'docker push docker-dev/helloworld-app'
+              docker.withTool("docker-default") { 
+
+                withDockerServer([credentialsId: "jenkins", uri: "http://nexus.capitola.cafe/repository/docker-dev/"]) { 
+
+                  sh "printenv" 
+                  sh "docker images" 
+                  base = docker.build("flyvictor/victor-wp-build") 
+                  base.push("tmp-fromjenkins") 
+                } 
+              }
             }
         }
         stage('Test') {
