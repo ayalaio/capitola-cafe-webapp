@@ -25,6 +25,8 @@ pipeline {
                       sh "mvn clean package"
 
                       base = docker.build("devops/helloworld-app") 
+                      echo 'timestamp'
+                      echo timeStamp
                       base.push(timeStamp) 
                     }
                   } 
