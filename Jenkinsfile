@@ -9,16 +9,19 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-              docker.withTool("docker-default") { 
+              script {
+                docker.withTool("docker-default") { 
 
-                withDockerServer([credentialsId: "jenkins", uri: "http://nexus.capitola.cafe/repository/docker-dev/"]) { 
+                  withDockerServer([credentialsId: "jenkins", uri: "http://nexus.capitola.cafe/repository/docker-dev/"]) { 
 
-                  sh "printenv" 
-                  sh "docker images" 
-                  // base = docker.build("flyvictor/victor-wp-build") 
-                  // base.push("tmp-fromjenkins") 
-                } 
+                    sh "printenv" 
+                    sh "docker images" 
+                    // base = docker.build("flyvictor/victor-wp-build") 
+                    // base.push("tmp-fromjenkins") 
+                  } 
+                }
               }
+              
             }
         }
         stage('Test') {
