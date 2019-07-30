@@ -1,19 +1,21 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: helloworld-kubernetes
+  name: helloworld-app
+  namespace: devops
 spec:
   type: LoadBalancer
   ports:
   - port: 8080
     targetPort: 8080
   selector:
-    app: hello-kubernetes
+    app: helloworld-app
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: helloworld-app
+  namespace: devops
 spec:
   replicas: 3
   selector:
@@ -26,6 +28,6 @@ spec:
     spec:
       containers:
       - name: helloworld-app
-        image: http://10.126.6.127:8082/repository/docker-dev/devops/helloworld-app:latest
+        image: http://10.126.6.127:8082/devops/helloworld-app:latest
         ports:
         - containerPort: 8080
