@@ -14,7 +14,7 @@ pipeline {
 
                   docker.withServer("tcp://svc-docker-socket:2376") { 
 
-                    //withDockerRegistry([credentialsId: 'jenkins-nexus', url: "https://svc-nexus:8081/"]) {
+                    docker.withRegistry("https://svc-nexus:8081/", 'jenkins-nexus') {
 
                       sh "mvn clean package"
 
