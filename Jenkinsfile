@@ -15,8 +15,8 @@ pipeline {
 
                   sh "printenv" 
                   sh "docker images" 
-                  base = docker.build("flyvictor/victor-wp-build") 
-                  base.push("tmp-fromjenkins") 
+                  // base = docker.build("flyvictor/victor-wp-build") 
+                  // base.push("tmp-fromjenkins") 
                 } 
               }
             }
