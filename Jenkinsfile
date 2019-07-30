@@ -14,11 +14,11 @@ pipeline {
 
                   docker.withServer("tcp://svc-docker-socket:2376") { 
 
-                    docker.withRegistry("http://svc-nexus:8081/", 'jenkins-nexus') {
+                    docker.withRegistry("http://svc-nexus:8081/repository/docker-dev", 'jenkins-nexus') {
 
                       sh "mvn clean package"
 
-                      base = docker.build("docker-dev/helloworld-app") 
+                      base = docker.build("devops/helloworld-app") 
                       base.push("helloworld-app") 
                     }
                   } 
