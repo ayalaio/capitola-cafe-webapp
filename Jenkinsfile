@@ -11,7 +11,7 @@ pipeline {
 
                   //withDockerServer([credentialsId: "jenkins", uri: "tcp://svc-nexus.devops:8081/repository/docker-dev/"]) { 
 
-                    sh "whoami"
+                    sh "sudo whoami"
                     sh "ls -la /var/run/docker.sock"
                     sh "printenv" 
                     sh "docker images" 
