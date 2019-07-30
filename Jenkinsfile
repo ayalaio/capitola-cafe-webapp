@@ -1,3 +1,4 @@
+def timeStamp
 pipeline {
 
     agent any
@@ -7,13 +8,14 @@ pipeline {
     }
 
 
-    def timeStamp = Calendar.getInstance().getTime().format('YYYYMMddhhmmss',TimeZone.getTimeZone('CST'))
 
 
     stages {
         stage('Build') {
             steps {
               script {
+                timeStamp = Calendar.getInstance().getTime().format('YYYYMMddhhmmss',TimeZone.getTimeZone('CST'))
+
                 docker.withTool("docker") { 
 
                   docker.withServer("tcp://svc-docker-socket:2376") { 
