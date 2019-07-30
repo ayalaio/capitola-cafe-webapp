@@ -2,6 +2,11 @@ pipeline {
 
     agent any
 
+    tools {
+        maven 'maven'
+        jdk 'jdk8'
+    }
+
     stages {
         stage('Build') {
             steps {
@@ -9,6 +14,8 @@ pipeline {
                 docker.withTool("docker") { 
 
                   withDockerServer([credentialsId: "jenkins", uri: "tcp://svc-docker-socket:2376"]) { 
+
+                    sh "maven clean package"
 
                     base = docker.build("docker-dev/helloworld-app") 
                     base.push("helloworld-app") 
