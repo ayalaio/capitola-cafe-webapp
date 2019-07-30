@@ -12,7 +12,7 @@ pipeline {
               script {
                 docker.withTool("docker") { 
 
-                  withDockerServer([uri: "tcp://svc-docker-socket:2376"]) { 
+                  docker.withServer([uri: "tcp://svc-docker-socket:2376"]) { 
 
                     //withDockerRegistry([credentialsId: 'jenkins-nexus', url: "https://svc-nexus:8081/"]) {
 
