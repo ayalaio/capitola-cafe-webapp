@@ -12,12 +12,15 @@ pipeline {
               script {
                 docker.withTool("docker") { 
 
-                  withDockerServer([credentialsId: "jenkins", uri: "tcp://svc-docker-socket:2376"]) { 
+                  withDockerServer([uri: "tcp://svc-docker-socket:2376"]) { 
 
-                    sh "mvn clean package"
+                    withDockerRegistry([credentialsId: 'jenkins', url: "https://svc-nexus:8081/"]) {
 
-                    base = docker.build("docker-dev/helloworld-app") 
-                    base.push("helloworld-app") 
+                      sh "mvn clean package"
+
+                      base = docker.build("docker-dev/helloworld-app") 
+                      base.push("helloworld-app") 
+                    }
                   } 
                 }
               }
