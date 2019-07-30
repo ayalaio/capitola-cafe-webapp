@@ -28,6 +28,6 @@ spec:
     spec:
       containers:
       - name: helloworld-app
-        image: http://10.126.6.127:8082/devops/helloworld-app:latest
+        image: 10.126.6.127:8082/devops/helloworld-app:latest
         ports:
         - containerPort: 8080
