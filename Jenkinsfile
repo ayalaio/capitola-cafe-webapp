@@ -6,11 +6,14 @@ pipeline {
         maven 'maven 3.6.1'
     }
 
+    script {
+      def timeStamp = Calendar.getInstance().getTime().format('YYYYMMddhhmmss',TimeZone.getTimeZone('CST'))
+    }
+
     stages {
         stage('Build') {
             steps {
               script {
-                def timeStamp = Calendar.getInstance().getTime().format('YYYYMMddhhmmss',TimeZone.getTimeZone('CST'))
                 docker.withTool("docker") { 
 
                   docker.withServer("tcp://svc-docker-socket:2376") { 
