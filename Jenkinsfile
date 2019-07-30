@@ -45,7 +45,6 @@ pipeline {
               script{
                 sh "sed 's/VERSION/${timeStamp}/g' deploy-dev.yaml.tmpl > deploy-dev.yaml"
                 kubernetesDeploy(
-                  kubeconfigId: 'jenkins-kube',
                   configs: 'deploy-dev.yaml'
                 )
               }
