@@ -6,15 +6,14 @@ pipeline {
         stage('Build') {
             steps {
               script {
-                //def dockerTool = tool name: 'docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
                 docker.withTool("docker") { 
 
                   withDockerServer([credentialsId: "jenkins", uri: "tcp://svc-docker-socket:2376"]) { 
 
                     sh "printenv" 
                     sh "docker images" 
-                    // base = docker.build("flyvictor/victor-wp-build") 
-                    // base.push("tmp-fromjenkins") 
+                    base = docker.build("docker-dev/helloworld-app") 
+                    base.push("helloworld-app") 
                   } 
                 }
               }
