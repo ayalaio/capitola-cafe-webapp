@@ -6,8 +6,8 @@ pipeline {
         stage('Build') {
             steps {
               script {
-                def dockerTool = tool name: 'docker-latest', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
-                dockerTool.withTool("docker-default") { 
+                def dockerTool = tool name: 'docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
+                dockerTool.withTool("docker") { 
 
                   withDockerServer([credentialsId: "jenkins", uri: "http://nexus.capitola.cafe/repository/docker-dev/"]) { 
 
