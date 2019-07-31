@@ -12,7 +12,7 @@ public class Example {
   }
 
   String message() {
-    return "Hello and Welcome!";
+    return "Hello and Thanks!";
   }
 
   public static void main(String[] args) throws Exception {
