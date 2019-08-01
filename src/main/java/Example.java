@@ -12,7 +12,7 @@ public class Example {
   }
 
   String message() {
-    return "Hello and ready for k8s!";
+    return "Hello and ready for Jenkins!";
   }
 
   public static void main(String[] args) throws Exception {
