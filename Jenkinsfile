@@ -7,13 +7,11 @@ pipeline {
         maven 'maven 3.6.1'
     }
 
-
-
-
     stages {
         stage('Build') {
             steps {
               script {
+
                 timeStamp = Calendar.getInstance().getTime().format('YYYYMMddhhmmss',TimeZone.getTimeZone('CST'))
 
                 docker.withTool("docker") { 
@@ -40,7 +38,7 @@ pipeline {
                 echo 'Testing..'
             }
         }
-        stage('Deploy') {
+        stage('Deploy Stage') {
             steps {
               script{
                 sh "sed 's/VERSION/${timeStamp}/g' deploy-dev.yaml.tmpl > deploy-dev.yaml"
@@ -51,5 +49,7 @@ pipeline {
               }
             }
         }
+
+
     }
 }
