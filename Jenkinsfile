@@ -47,13 +47,14 @@ pipeline {
                   configs: 'deploy-dev.yaml'
                 )
 
-                sh 'apk add -U curl'
+                TWILIO_ACCOUNT_SID = credentials('twilio-account-sid')
+                TWILIO_AUTH_TOKEN = credentials('twilio-auth-token')
 
                 sh "curl 'https://api.twilio.com/2010-04-01/Accounts/ACa200338d7985957b8ecf78612bc78799/Messages.json' -X POST \
---data-urlencode 'To=whatsapp:+5218117489518' \
---data-urlencode 'From=whatsapp:+14155238886' \
---data-urlencode 'Body=Your build is done' \
--u ACa200338d7985957b8ecf78612bc78799:d5c1dcec255ed4e7e8f31b7312b5771c || exit 0"
+                    --data-urlencode 'To=whatsapp:+5218117489518' \
+                    --data-urlencode 'From=whatsapp:+14155238886' \
+                    --data-urlencode 'Body=Your build is done' \
+                    -u " + TWILIO_ACCOUNT_SID + ":" + TWILIO_AUTH_TOKEN + " || exit 0"
               }
             }
         }
