@@ -2,13 +2,18 @@ def label = "worker"
 
 podTemplate(label: label, containers: [
   containerTemplate(name: 'maven', image: 'maven:3.6.1-jdk-8', ttyEnabled: true, command: 'cat')
-  ]) {
+]) {
+
+  environment {
+        TWILIO_ACCOUNT_SID     = credentials('twilio-account-sid')
+        TWILIO_AUTH_TOKEN = credentials('twilio-auth-token')
+  }
 
   node(label) {
     stage('Checkout') {
       checkout scm
     }
-    stage('Release prepare') {
+    stage('Build and Publish') {
       container('maven') {
         timeStamp = Calendar.getInstance().getTime().format('YYYYMMddhhmmss',TimeZone.getTimeZone('CST'))
 
@@ -29,7 +34,7 @@ podTemplate(label: label, containers: [
         }
       }
     }
-    stage('Release perform') {
+    stage('Deploy') {
       container('maven') {
           sh "sed 's/VERSION/${timeStamp}/g' deploy-dev.yaml.tmpl > deploy-dev.yaml"
           kubernetesDeploy(
@@ -38,5 +43,17 @@ podTemplate(label: label, containers: [
           )
       }
     }
+
+    stage('Notify') {
+      container('maven') {
+          sh 'curl \'https://api.twilio.com/2010-04-01/Accounts/ACa200338d7985957b8ecf78612bc78799/Messages.json\' -X POST \
+                  --data-urlencode \'To=whatsapp:+5218117489518\' \
+                  --data-urlencode \'From=whatsapp:+14155238886\' \
+                  --data-urlencode \'Body=Your build is done\' \
+                  -u $TWILIO_ACCOUNT_SID:$TWILIO_AUTH_TOKEN  || exit 0'
+      }
+    }
+
+
   }
 }
