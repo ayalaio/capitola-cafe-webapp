@@ -2,7 +2,10 @@ def label = "worker"
 
 podTemplate(label: label, containers: [
   containerTemplate(name: 'maven', image: 'maven:3.6.1-jdk-8', ttyEnabled: true, command: 'cat')
-], envVars: [secretEnvVar(key: 'QWERTY', secretName: 'querty', secretKey: 'password')]) {
+], envVars: [
+  secretEnvVar(key: 'TWILIO_ACCOUNT_SID', secretName: 'twilio', secretKey: 'TWILIO_ACCOUNT_SID'), 
+  secretEnvVar(key: 'TWILIO_AUTH_TOKEN', secretName: 'twilio', secretKey: 'TWILIO_AUTH_TOKEN')
+]) {
 
   node(label) {
     stage('Checkout') {
@@ -42,11 +45,6 @@ podTemplate(label: label, containers: [
 
     stage('Notify') {
       container('maven') {
-          environment {
-                TWILIO_ACCOUNT_SID = "ACa200338d7985957b8ecf78612bc78799"
-                TWILIO_AUTH_TOKEN = credentials('twilio-auth-token')
-                CAC = "DDDDD"
-          }
 
           sh 'env'
 
@@ -56,13 +54,6 @@ podTemplate(label: label, containers: [
                   --data-urlencode 'Body=Your build is done' \
                   -u "$TWILIO_ACCOUNT_SID:$TWILIO_AUTH_TOKEN:$CAC"  || exit 0'''
 
-          script {
-            sh '''curl 'https://api.twilio.com/2010-04-01/Accounts/ACa200338d7985957b8ecf78612bc78799/Messages.json' -X POST \
-                  --data-urlencode 'To=whatsapp:+5218117489518' \
-                  --data-urlencode 'From=whatsapp:+14155238886' \
-                  --data-urlencode 'Body=Your build is done' \
-                  -u "$TWILIO_ACCOUNT_SID:$TWILIO_AUTH_TOKEN:$CAC"  || exit 0'''
-          }
       }
     }
 
