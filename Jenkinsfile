@@ -47,10 +47,11 @@ pipeline {
                 //   configs: 'deploy-dev.yaml'
                 // )
 
-                TWILIO_ACCOUNT_SID = credentials('twilio-account-sid')
-                TWILIO_AUTH_TOKEN = credentials('twilio-auth-token')
+                def TWILIO_ACCOUNT_SID = credentials('twilio-account-sid')
+                def TWILIO_AUTH_TOKEN = credentials('twilio-auth-token')
 
-                sh "echo " + TWILIO_ACCOUNT_SID + ":" + TWILIO_AUTH_TOKEN
+                print TWILIO_ACCOUNT_SID
+                print  TWILIO_AUTH_TOKEN
 
                 sh "curl 'https://api.twilio.com/2010-04-01/Accounts/ACa200338d7985957b8ecf78612bc78799/Messages.json' -X POST \
                     --data-urlencode 'To=whatsapp:+5218117489518' \
