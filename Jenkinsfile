@@ -63,6 +63,10 @@ pipeline {
 
                 sh 'ls /usr/bin'
 
+                sh 'whoami'
+
+                sh 'pwd'
+
                 sleep(1000)
                     
               }
