@@ -54,20 +54,6 @@ pipeline {
 
                 sh 'uname -a'
 
-                sleep(1000)
-
-
-                sh 'curl \'https://api.twilio.com/2010-04-01/Accounts/ACa200338d7985957b8ecf78612bc78799/Messages.json\' -X POST \
-                    --data-urlencode \'To=whatsapp:+5218117489518\' \
-                    --data-urlencode \'From=whatsapp:+14155238886\' \
-                    --data-urlencode \'Body=Your build is done\' \
-                    -u $TWILIO_ACCOUNT_SID:$TWILIO_AUTH_TOKEN  || exit 0'
-
-                sh '/bin/curl \'https://api.twilio.com/2010-04-01/Accounts/ACa200338d7985957b8ecf78612bc78799/Messages.json\' -X POST \
-                    --data-urlencode \'To=whatsapp:+5218117489518\' \
-                    --data-urlencode \'From=whatsapp:+14155238886\' \
-                    --data-urlencode \'Body=Your build is done\' \
-                    -u $TWILIO_ACCOUNT_SID:$TWILIO_AUTH_TOKEN  || exit 0'
 
                 sh '/usr/bin/curl \'https://api.twilio.com/2010-04-01/Accounts/ACa200338d7985957b8ecf78612bc78799/Messages.json\' -X POST \
                     --data-urlencode \'To=whatsapp:+5218117489518\' \
@@ -75,17 +61,7 @@ pipeline {
                     --data-urlencode \'Body=Your build is done\' \
                     -u $TWILIO_ACCOUNT_SID:$TWILIO_AUTH_TOKEN  || exit 0'
 
-                sh '/sbin/curl \'https://api.twilio.com/2010-04-01/Accounts/ACa200338d7985957b8ecf78612bc78799/Messages.json\' -X POST \
-                    --data-urlencode \'To=whatsapp:+5218117489518\' \
-                    --data-urlencode \'From=whatsapp:+14155238886\' \
-                    --data-urlencode \'Body=Your build is done\' \
-                    -u $TWILIO_ACCOUNT_SID:$TWILIO_AUTH_TOKEN  || exit 0'
-
-                sh '/usr/sbin/curl \'https://api.twilio.com/2010-04-01/Accounts/ACa200338d7985957b8ecf78612bc78799/Messages.json\' -X POST \
-                    --data-urlencode \'To=whatsapp:+5218117489518\' \
-                    --data-urlencode \'From=whatsapp:+14155238886\' \
-                    --data-urlencode \'Body=Your build is done\' \
-                    -u $TWILIO_ACCOUNT_SID:$TWILIO_AUTH_TOKEN  || exit 0'
+                sh 'ls /usr/bin'
                     
               }
             }
