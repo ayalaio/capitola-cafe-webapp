@@ -67,6 +67,10 @@ pipeline {
 
                 sh 'pwd'
 
+                sh 'env'
+
+                sh 'touch /tmp/xxx'
+
                 sleep(1000)
                     
               }
