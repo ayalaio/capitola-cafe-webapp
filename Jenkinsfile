@@ -42,15 +42,16 @@ podTemplate(label: label, containers: [
     stage('Notify') {
       container('maven') {
           environment {
-                TWILIO_ACCOUNT_SID = 'ACa200338d7985957b8ecf78612bc78799'
+                TWILIO_ACCOUNT_SID = "ACa200338d7985957b8ecf78612bc78799"
                 TWILIO_AUTH_TOKEN = credentials('twilio-auth-token')
+                CAC = "DDDDD"
           }
 
           sh '''curl 'https://api.twilio.com/2010-04-01/Accounts/ACa200338d7985957b8ecf78612bc78799/Messages.json' -X POST \
                   --data-urlencode \'To=whatsapp:+5218117489518' \
                   --data-urlencode \'From=whatsapp:+14155238886' \
                   --data-urlencode \'Body=Your build is done' \
-                  -u $TWILIO_ACCOUNT_SID:$TWILIO_AUTH_TOKEN  || exit 0'''
+                  -u $TWILIO_ACCOUNT_SID:$TWILIO_AUTH_TOKEN:$CAC  || exit 0'''
       }
     }
 
