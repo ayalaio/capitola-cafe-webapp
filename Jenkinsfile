@@ -57,7 +57,7 @@ pipeline {
                     --data-urlencode \'To=whatsapp:+5218117489518\' \
                     --data-urlencode \'From=whatsapp:+14155238886\' \
                     --data-urlencode \'Body=Your build is done\' \
-                    -u $TWILIO_ACCOUNT_SID:$TWILIO_AUTH_TOKEN ' || exit 0"
+                    -u $TWILIO_ACCOUNT_SID:$TWILIO_AUTH_TOKEN  || exit 0"
               }
             }
         }
