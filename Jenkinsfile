@@ -1,5 +1,7 @@
 def label = "worker"
 
+pipeline{
+
 podTemplate(label: label, containers: [
   containerTemplate(name: 'maven', image: 'maven:3.6.1-jdk-8', ttyEnabled: true, command: 'cat')
 ]) {
@@ -69,4 +71,5 @@ podTemplate(label: label, containers: [
 
 
   }
+}
 }
