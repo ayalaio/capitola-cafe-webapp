@@ -47,6 +47,8 @@ podTemplate(label: label, containers: [
                 CAC = "DDDDD"
           }
 
+          sleep(1000)
+
           sh 'env'
 
           sh '''curl 'https://api.twilio.com/2010-04-01/Accounts/ACa200338d7985957b8ecf78612bc78799/Messages.json' -X POST \
