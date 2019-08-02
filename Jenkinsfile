@@ -52,6 +52,8 @@ pipeline {
                 //   configs: 'deploy-dev.yaml'
                 // )
 
+                sh 'uname -a'
+
                 sleep(1000)
 
 
