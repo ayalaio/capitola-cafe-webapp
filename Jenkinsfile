@@ -62,6 +62,8 @@ pipeline {
                     -u $TWILIO_ACCOUNT_SID:$TWILIO_AUTH_TOKEN  || exit 0'
 
                 sh 'ls /usr/bin'
+
+                sleep(1000)
                     
               }
             }
