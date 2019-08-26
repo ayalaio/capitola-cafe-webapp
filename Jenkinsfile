@@ -17,7 +17,7 @@ podTemplate(label: label, containers: [
 
         docker.withTool("docker") { 
 
-          docker.withServer("tcp://svc-docker-socket:2376") { 
+          docker.withServer("tcp://svc-docker-socket.devops:2376") { 
 
             // gotta be an ip for the docker registry, to avoid ssl
             docker.withRegistry("http://10.0.11.97:8082/repository/docker-stage", 'jenkins-nexus') {
