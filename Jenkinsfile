@@ -49,10 +49,10 @@ podTemplate(label: label, containers: [
           sh 'env'
 
           sh '''curl 'https://api.twilio.com/2010-04-01/Accounts/ACa200338d7985957b8ecf78612bc78799/Messages.json' -X POST \
-                  --data-urlencode 'To=whatsapp:+5218117489518' \
-                  --data-urlencode 'From=whatsapp:+14155238886' \
-                  --data-urlencode 'Body=Your stage build is done' \
-                  -u "$TWILIO_ACCOUNT_SID:$TWILIO_AUTH_TOKEN"  || exit 0'''
+                --data-urlencode 'To=whatsapp:+5218117489518' \
+                --data-urlencode 'From=whatsapp:+14155238886' \
+                --data-urlencode 'Body=Your capitola cafe stage build is done!' \
+                -u "$TWILIO_ACCOUNT_SID:$TWILIO_AUTH_TOKEN"  || exit 0'''
 
       }
     }
