@@ -19,7 +19,7 @@ podTemplate(label: label, containers: [
 
           docker.withServer("tcp://svc-docker-socket:2376") { 
 
-            docker.withRegistry("http://svc-nexus:8082/repositories/docker-stage", 'jenkins-nexus') {
+            docker.withRegistry("http://svc-nexus.devops:8082/repository/docker-stage", 'jenkins-nexus') {
 
               sh "mvn clean package"
 
