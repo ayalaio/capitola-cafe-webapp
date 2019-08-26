@@ -11,7 +11,7 @@ public class Example {
   String home() {
     String a = "<h1 style='font-size: 5em; text-align: center'>" + Message.message + "</h1>";
     a = a
-        + "<img style='margin:auto' src='https://www.kahlua.com/globalassets/images/cocktails/2018/opt/kahluadrinks_wide_coffee1.png'>";
+        + "<img style='margin:auto; width:200px;display:block' src='https://www.kahlua.com/globalassets/images/cocktails/2018/opt/kahluadrinks_wide_coffee1.png'>";
     return a;
   }
 
