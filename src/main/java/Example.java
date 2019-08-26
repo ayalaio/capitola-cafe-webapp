@@ -1,3 +1,4 @@
+
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
 import org.springframework.web.bind.annotation.*;
@@ -8,11 +9,10 @@ public class Example {
 
   @RequestMapping("/")
   String home() {
-    return "<h1 style='font-size: 5em; text-align: center'>" + message() + "</h1>";
-  }
-
-  String message() {
-    return "Hello and ready for Jenkins!";
+    String a = "<h1 style='font-size: 5em; text-align: center'>" + Message.message + "</h1>";
+    a = a
+        + "<img style='margin:auto' src='https://www.kahlua.com/globalassets/images/cocktails/2018/opt/kahluadrinks_wide_coffee1.png'>";
+    return a;
   }
 
   public static void main(String[] args) throws Exception {

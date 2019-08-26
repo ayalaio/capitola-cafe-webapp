@@ -1,5 +1,5 @@
 FROM java
-ADD ./target/helloworld-app-0.0.1-SNAPSHOT.jar /helloworld-app-0.0.1-SNAPSHOT.jar
+ADD ./target/webapp-0.0.1-SNAPSHOT.jar /webapp-0.0.1-SNAPSHOT.jar
 ADD ./run.sh /run.sh
 RUN chmod a+x /run.sh
 EXPOSE 8080:8080
