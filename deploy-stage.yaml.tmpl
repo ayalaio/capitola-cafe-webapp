@@ -31,3 +31,5 @@ spec:
         image: 10.0.11.97:8082/devops/capitola-cafe-webapp:VERSION
         ports:
         - containerPort: 8080
+      imagePullSecrets:
+      - name: regcred
