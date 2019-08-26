@@ -20,7 +20,7 @@ podTemplate(label: label, containers: [
           docker.withServer("tcp://svc-docker-socket:2376") { 
 
             // gotta be an ip for the docker registry, to avoid ssl
-            docker.withRegistry("http://10.0.11.97:8081/repository/docker-stage", 'jenkins-nexus') {
+            docker.withRegistry("http://10.0.11.97:8082/repository/docker-stage", 'jenkins-nexus') {
 
               sh "mvn clean package"
 
