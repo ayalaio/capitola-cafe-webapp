@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: helloworld-app
+  name: svc-capitola-cafe-webapp
   namespace: devops
 spec:
   type: LoadBalancer
@@ -9,25 +9,25 @@ spec:
   - port: 80
     targetPort: 8080
   selector:
-    app: helloworld-app
+    app: capitola-cafe-webapp
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: helloworld-app
+  name: capitola-cafe-webapp
   namespace: devops
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: helloworld-app
+      app: capitola-cafe-webapp
   template:
     metadata:
       labels:
-        app: helloworld-app
+        app: capitola-cafe-webapp
     spec:
       containers:
-      - name: helloworld-app
-        image: 10.126.6.127:8082/devops/helloworld-app:VERSION
+      - name: capitola-cafe-webapp
+        image: 10.0.11.97:8082/devops/capitola-cafe-webapp:VERSION
         ports:
         - containerPort: 8080
