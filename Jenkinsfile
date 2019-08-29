@@ -22,7 +22,7 @@ podTemplate(label: label, containers: [
             // gotta be an ip for the docker registry, to avoid ssl
             docker.withRegistry("http://10.0.11.97:8082/repository/docker-stage", 'jenkins-nexus') {
 
-              sh "mvn clean package"
+              sh "mvn clean package1"
 
               base = docker.build("devops/capitola-cafe-webapp") 
               echo 'timestamp'
