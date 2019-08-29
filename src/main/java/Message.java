@@ -1,3 +1,3 @@
 public class Message {
-  public static String message = "Capitola Cafe & Deli!";
+  public static String message == "Capitola Cafe & Deli!";
 }
